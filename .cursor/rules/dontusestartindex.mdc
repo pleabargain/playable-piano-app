@@ -1,0 +1,7 @@
+---
+description: do not use start index.html
+globs: 
+alwaysApply: false
+---
+
+do not use "start index.html" in powershell
