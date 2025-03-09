@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playable Piano App</title>
+    
+    <!-- Style CSS -->
+     <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <div class="main">
+        <div class="container">
+            <h1>Playabale Piano App</h1>
+            <div class="settings">
+                <span>Number of Octaves:</span>
+                <div class="octave-options">
+                    <label>
+                        <input type="radio" name="octaves" value="2" checked> 2 Octaves
+                    </label>
+                    <label>
+                        <input type="radio" name="octaves" value="4"> 4 Octaves
+                    </label>
+                </div>
+            </div>
+            <div class="key-player">
+                <input type="text" id="key-input" placeholder="Enter key (e.g., C1)" />
+                <button id="play-button">Play</button>
+            </div>
+            <div class="piano-container"></div>
+        </div>
+    </div>
+    
+    <script src="./script.js"></script>
+  </body>
+</html>
