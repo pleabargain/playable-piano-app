@@ -1,3 +1,18 @@
+# cost
+about 5USD and about 90 minutes of back and forth with claude sonnet 3.7
+
+I relied on Cline in Cursor to do most of the coding.
+
+
+# to do
+It's not ideal
+
+I want to be able to record the keys e.g. https://www.youtube.com/shorts/T269m18_zd4
+
+and then control playback speed as fast as I want.
+
+The code is not there yet.
+
 # Playable Piano App
 
 A web-based interactive piano application that allows users to play, record, and learn piano through a graphical interface. This application provides a virtual piano keyboard with customizable features for both casual play and learning.

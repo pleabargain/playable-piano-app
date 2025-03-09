@@ -1,0 +1,57 @@
+[
+  {
+    "note": "G",
+    "octave": 2,
+    "timestamp": 1232
+  },
+  {
+    "note": "C",
+    "octave": 3,
+    "timestamp": 3055
+  },
+  {
+    "note": "D#",
+    "octave": 3,
+    "timestamp": 4199
+  },
+  {
+    "note": "D",
+    "octave": 3,
+    "timestamp": 5039
+  },
+  {
+    "note": "C#",
+    "octave": 3,
+    "timestamp": 5879
+  },
+  {
+    "note": "B",
+    "octave": 2,
+    "timestamp": 6874
+  },
+  {
+    "note": "A",
+    "octave": 2,
+    "timestamp": 8018
+  },
+  {
+    "note": "B",
+    "octave": 2,
+    "timestamp": 9370
+  },
+  {
+    "note": "C",
+    "octave": 3,
+    "timestamp": 10141
+  },
+  {
+    "note": "C#",
+    "octave": 3,
+    "timestamp": 11133
+  },
+  {
+    "note": "D",
+    "octave": 3,
+    "timestamp": 12194
+  }
+]
