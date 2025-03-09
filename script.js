@@ -2,6 +2,11 @@ const pianoContainer = document.querySelector(".piano-container");
 const octaveRadios = document.querySelectorAll('input[name="octaves"]');
 const base = "./audio/";
 
+// Recording variables
+let isRecording = false;
+let recordingStartTime = 0;
+let recordedKeys = [];
+
 // Define the structure of a piano octave (0 = white key, 1 = black key)
 const keyPattern = [
     { type: "white", note: "C" },
@@ -54,6 +59,8 @@ function generatePianoKeys(octaves) {
             
             key.addEventListener("click", () => {
                 new Audio(`${base}key${audioNumber}.mp3`).play();
+                // Record key press if recording is active
+                recordKeyPress(keyInfo.note, octaveNumber);
             });
             
             pianoContainer.appendChild(key);
@@ -79,6 +86,8 @@ function generatePianoKeys(octaves) {
             
             key.addEventListener("click", () => {
                 new Audio(`${base}key${audioNumber}.mp3`).play();
+                // Record key press if recording is active
+                recordKeyPress(keyInfo.note, Math.floor(i / 12) + 1);
             });
             
             // Calculate position based on the note
@@ -113,6 +122,27 @@ function generatePianoKeys(octaves) {
             key.style.left = `${position}em`;
             pianoContainer.appendChild(key);
         }
+    }
+}
+
+// Function to record a key press
+function recordKeyPress(note, octave) {
+    if (isRecording) {
+        const timestamp = Date.now() - recordingStartTime;
+        recordedKeys.push({
+            note: note,
+            octave: octave,
+            timestamp: timestamp
+        });
+        updateRecordingDisplay();
+    }
+}
+
+// Function to update the recording display
+function updateRecordingDisplay() {
+    const recordingTextarea = document.getElementById("recording-textarea");
+    if (recordingTextarea) {
+        recordingTextarea.value = JSON.stringify(recordedKeys, null, 2);
     }
 }
 
@@ -162,6 +192,9 @@ function playKey(noteWithOctave) {
         
         // Play the audio
         new Audio(`${base}key${audioNumber}.mp3`).play();
+        
+        // Record key press if recording is active
+        recordKeyPress(note, octave);
     } else {
         alert(`Key ${noteWithOctave} not found. Make sure you have the correct octave selected.`);
     }
@@ -198,6 +231,102 @@ window.onload = () => {
     keyInput.addEventListener("keyup", (event) => {
         if (event.key === "Enter") {
             playKey(keyInput.value);
+        }
+    });
+    
+    // Recording controls
+    const recordButton = document.getElementById("record-button");
+    const clearRecordingButton = document.getElementById("clear-recording-button");
+    const recordingTextarea = document.getElementById("recording-textarea");
+    
+    // Record button event listener
+    recordButton.addEventListener("click", () => {
+        if (!isRecording) {
+            // Start recording
+            isRecording = true;
+            recordingStartTime = Date.now();
+            recordedKeys = [];
+            recordButton.textContent = "Stop Recording";
+            recordButton.classList.add("recording");
+            updateRecordingDisplay();
+        } else {
+            // Stop recording
+            isRecording = false;
+            recordButton.textContent = "Record";
+            recordButton.classList.remove("recording");
+        }
+    });
+    
+    // Clear recording button event listener
+    clearRecordingButton.addEventListener("click", () => {
+        recordedKeys = [];
+        updateRecordingDisplay();
+    });
+    
+    // Save recording button event listener
+    const saveButton = document.getElementById("save-button");
+    const saveFilename = document.getElementById("save-filename");
+    
+    saveButton.addEventListener("click", () => {
+        if (recordedKeys.length === 0) {
+            alert("No recording to save. Record some keys first.");
+            return;
+        }
+        
+        const filename = saveFilename.value || "piano-recording.json";
+        const recordingData = JSON.stringify(recordedKeys, null, 2);
+        
+        // Create a blob and download link
+        const blob = new Blob([recordingData], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    });
+    
+    // Load recording button event listener
+    const loadButton = document.getElementById("load-button");
+    const loadFile = document.getElementById("load-file");
+    
+    loadButton.addEventListener("click", () => {
+        if (!loadFile.files || loadFile.files.length === 0) {
+            alert("Please select a file to load.");
+            return;
+        }
+        
+        const file = loadFile.files[0];
+        const reader = new FileReader();
+        
+        reader.onload = (event) => {
+            try {
+                const loadedData = JSON.parse(event.target.result);
+                if (Array.isArray(loadedData)) {
+                    recordedKeys = loadedData;
+                    updateRecordingDisplay();
+                } else {
+                    throw new Error("Invalid recording format");
+                }
+            } catch (error) {
+                alert("Error loading recording: " + error.message);
+            }
+        };
+        
+        reader.readAsText(file);
+    });
+    
+    // Allow manual editing of the recording
+    recordingTextarea.addEventListener("input", () => {
+        try {
+            const editedData = JSON.parse(recordingTextarea.value);
+            if (Array.isArray(editedData)) {
+                recordedKeys = editedData;
+            }
+        } catch (error) {
+            // Ignore parsing errors during editing
         }
     });
 };

@@ -26,6 +26,23 @@
                 <input type="text" id="key-input" placeholder="Enter key (e.g., C1)" />
                 <button id="play-button">Play</button>
             </div>
+            <div class="recording-controls">
+                <button id="record-button">Record</button>
+                <button id="clear-recording-button">Clear</button>
+            </div>
+            <div class="recording-display">
+                <textarea id="recording-textarea" placeholder="Recorded keys will appear here..." rows="5"></textarea>
+            </div>
+            <div class="file-controls">
+                <div class="save-controls">
+                    <input type="text" id="save-filename" placeholder="Enter filename" value="piano-recording.json" />
+                    <button id="save-button">Save Recording</button>
+                </div>
+                <div class="load-controls">
+                    <input type="file" id="load-file" accept=".json" />
+                    <button id="load-button">Load Recording</button>
+                </div>
+            </div>
             <div class="piano-container"></div>
         </div>
     </div>

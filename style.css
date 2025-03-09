@@ -92,6 +92,89 @@ body {
     background-color: #3a3f4b;
 }
 
+/* Recording Controls */
+.recording-controls {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.recording-controls button {
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd9d9;
+    background-color: #24272e;
+    color: #ddd9d9;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.recording-controls button:hover {
+    background-color: #3a3f4b;
+}
+
+#record-button.recording {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Recording Display */
+.recording-display {
+    margin-bottom: 20px;
+}
+
+.recording-display textarea {
+    width: 80%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ddd9d9;
+    background-color: #24272e;
+    color: #ddd9d9;
+    resize: vertical;
+}
+
+/* File Controls */
+.file-controls {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.save-controls, .load-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.file-controls input[type="text"], .file-controls input[type="file"] {
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd9d9;
+    background-color: #24272e;
+    color: #ddd9d9;
+}
+
+.file-controls button {
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd9d9;
+    background-color: #24272e;
+    color: #ddd9d9;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.file-controls button:hover {
+    background-color: #3a3f4b;
+}
+
 .piano-container {
     display: flex;
     justify-content: center;
