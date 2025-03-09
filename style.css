@@ -120,9 +120,23 @@ body {
     color: white;
 }
 
+/* Loop button active state */
+#loop-button.active {
+    background-color: #27ae60;
+    color: white;
+}
+
 /* Recording Display */
 .recording-display {
     margin-bottom: 20px;
+}
+
+.recording-display label, .manual-entry label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ddd9d9;
+    font-size: 16px;
+    text-align: center;
 }
 
 .recording-display textarea {
@@ -136,6 +150,54 @@ body {
     resize: vertical;
 }
 
+/* Manual Key Entry */
+.manual-entry {
+    margin-bottom: 20px;
+}
+
+.manual-entry textarea {
+    width: 80%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ddd9d9;
+    background-color: #24272e;
+    color: #ddd9d9;
+    resize: vertical;
+}
+
+.manual-entry-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.manual-entry-controls button {
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd9d9;
+    background-color: #24272e;
+    color: #ddd9d9;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.manual-entry-controls button:hover {
+    background-color: #3a3f4b;
+}
+
+.manual-entry-help {
+    margin-top: 5px;
+}
+
+.manual-entry-help p {
+    font-size: 12px;
+    color: #ddd9d9;
+    margin: 0;
+}
+
 /* File Controls */
 .file-controls {
     margin-bottom: 20px;
@@ -145,10 +207,75 @@ body {
     gap: 10px;
 }
 
-.save-controls, .load-controls {
+.save-controls, .load-controls, .play-recording-controls, .playback-controls {
     display: flex;
     gap: 10px;
     margin-bottom: 10px;
+}
+
+/* Speed Control Styles */
+.speed-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.speed-control label {
+    color: #ddd9d9;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.slider-label {
+    color: #ddd9d9;
+    font-size: 12px;
+    margin: 0 10px;
+}
+
+#playback-speed {
+    flex-grow: 1;
+    height: 5px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #24272e;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ddd9d9;
+    cursor: pointer;
+}
+
+#playback-speed::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ddd9d9;
+    cursor: pointer;
+}
+
+#playback-speed::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ddd9d9;
+    cursor: pointer;
+    border: none;
+}
+
+#speed-value {
+    font-weight: bold;
+    color: #ddd9d9;
 }
 
 .file-controls input[type="text"], .file-controls input[type="file"] {
@@ -206,7 +333,7 @@ body {
 }
 
 .white-key:hover, .white-key.active {
-    background-color: #ebebeb;
+    background-color: #ffb6c1; /* Light pink */
 }
 
 .black-key {
@@ -222,7 +349,7 @@ body {
 }
 
 .black-key:hover, .black-key.active {
-    background-color: #333333;
+    background-color: #ff69b4; /* Hot pink */
 }
 
 .note-label {
@@ -234,6 +361,11 @@ body {
     font-size: 1em;
     color: #000000;
     font-weight: bold;
+}
+
+/* White text for black key labels */
+.black-key .note-label {
+    color: #ffffff;
 }
 /* Black key positioning is now handled dynamically with JavaScript */
 
